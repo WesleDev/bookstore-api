@@ -3,16 +3,18 @@ package com.wesle.bookstore.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-public class Livro implements Serializable {
-	
+@Entity
+public class Book implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -22,14 +24,14 @@ public class Livro implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "category_id")
-	private Categoria category;
+	private Category category;
 
-	public Livro() {
+	public Book() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Livro(Integer id, String title, String name_author, String text, Categoria category) {
+	public Book(Integer id, String title, String name_author, String text, Category category) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -70,11 +72,11 @@ public class Livro implements Serializable {
 		this.text = text;
 	}
 
-	public Categoria getCategory() {
+	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategory(Categoria category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 
@@ -91,7 +93,7 @@ public class Livro implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Livro other = (Livro) obj;
+		Book other = (Book) obj;
 		return Objects.equals(id, other.id);
 	}
 
